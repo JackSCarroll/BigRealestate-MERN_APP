@@ -1,2 +1,4 @@
 node_modules
 .env
+steps.txt
+MongoDB.txt
