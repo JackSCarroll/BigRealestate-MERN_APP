@@ -1,0 +1,106 @@
+@use "../../responsive.scss" as *;
+
+.searchBar{
+    .type{
+        button{
+            padding: 16px 36px;
+            border: 1px solid #fbb03b;
+            border-bottom: none;
+            cursor: pointer;
+            background-color: white;
+            text-transform: capitalize;
+
+            &.active{
+                background-color: #fbb03b;
+                color: black;
+            }
+
+            &:first-child{
+                border-top-left-radius: 10px;
+                border-right: none;
+            }
+            &:last-child{
+                border-top-right-radius: 10px;
+                border-left: none;
+            }
+        }
+    }
+
+    form{
+        border: 1px solid #fbb03b;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        height: 64px;
+        gap: 5px;
+
+        @include sm{
+            flex-direction: column;
+            border: none;
+            gap: 0;
+        }
+
+        input{
+            border: none;
+            padding: 0 10px;
+            width: 200px;
+            font-size: 16px;
+            font-weight: 500;
+            
+
+            &:first-child{
+                border-bottom-left-radius: 9px;
+            }
+
+            @include lg{
+                padding: 0 5px;
+
+                &:nth-child(2), &:nth-child(3){
+                    width: 140px;
+                }
+            }
+            @include md{
+                width: 200px;
+                &:nth-child(2), &:nth-child(3){
+                    width: 200px;
+                }
+            }
+
+            @include sm{
+                width: auto;
+                &:nth-child(2), &:nth-child(3){
+                    width: auto;
+                }
+                padding: 20px;
+                border: 1px solid #fbb03b;
+                border-bottom: none;
+                &:first-child{
+                    border-bottom-left-radius: 0px;
+                    border-top-right-radius: 9px;
+                }
+            }
+        }
+
+        button{
+            border-top-right-radius: 9px;
+            border-bottom-right-radius: 9px;
+            border: none;
+            cursor: pointer;
+            background-color: #fbb03b;
+            flex: 1;
+
+            @include sm{
+                padding: 10px;
+                border-top-right-radius: 0px;
+                border-bottom-left-radius: 9px;
+            }
+
+            img{
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+}

@@ -1,0 +1,148 @@
+@use "../../responsive.scss" as *;
+
+nav{
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a{
+        transition: all 0.4s ease;
+
+        @include sm{
+            display: none;
+        }
+
+        &:hover{
+            scale: 1.05;
+        }
+    }
+
+    .left{
+        flex:3;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+
+        .logo{
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            img{
+                width: 48px;
+            }
+
+            /* Hide logo text on medium screens. Return on small screens */
+            span{
+                @include md{
+                    display: none;
+                }
+                @include sm{
+                    display: initial;
+                }
+            }
+        }
+    }
+    .right{
+        flex:2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: #e6e4ff;
+        height: 100%;
+
+        @include md{
+            background-color: transparent;
+        }
+
+        a{
+            padding: 12px 24px;
+            margin: 20px;
+        }
+
+        .register{
+            background-color: #fbb03b;
+            border-radius: 10px;
+        }
+
+        .hamMenu{
+            display: none;
+            height: 50px;
+            width: 50px;
+            margin-left: auto;
+            position: relative;
+            z-index: 10;
+            
+            span{
+                height: 5px;
+                width: 100%;
+                background-color: #fbb03b;
+                border-radius: 25px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.4s ease;
+                cursor: pointer;
+            }
+            span:nth-child(1){
+                top: 25%;
+            }
+            span:nth-child(2){
+                top: 50%;
+            }
+            span:nth-child(3){
+                top: 75%;
+            }
+
+            &.active {
+                span:nth-child(1) {
+                    top: 50%;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                }
+                span:nth-child(2) {
+                    opacity: 0;
+                }
+                span:nth-child(3) {
+                    top: 50%;
+                    transform: translate(-50%, -50%) rotate(-45deg);
+                }
+            }
+
+            @include sm{
+                display: initial;
+            }
+        }
+
+        .mobileMenu {
+            position:absolute;
+            top: 0;
+            right: -50%;
+            background-color: #141429;
+            color: white;
+            height: 100vh;
+            width: 50%;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 50;
+            font-size: 24px;
+            font-weight: bold;
+
+            &.active{
+                right: 0;
+            }
+
+            @include sm{
+                a{
+                    display: initial;
+                }
+            }
+        }
+    }
+}
