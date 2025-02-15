@@ -1,17 +1,18 @@
 @use "../../responsive.scss" as *;
+@use "../../variables.scss" as *;
 
 .searchBar{
     .type{
         button{
             padding: 16px 36px;
-            border: 1px solid #fbb03b;
+            border: 1px solid $myOrange;
             border-bottom: none;
             cursor: pointer;
             background-color: white;
             text-transform: capitalize;
 
             &.active{
-                background-color: #fbb03b;
+                background-color: $myOrange;
                 color: black;
             }
 
@@ -27,7 +28,7 @@
     }
 
     form{
-        border: 1px solid #fbb03b;
+        border: 1px solid $myOrange;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
@@ -74,7 +75,7 @@
                     width: auto;
                 }
                 padding: 20px;
-                border: 1px solid #fbb03b;
+                border: 1px solid $myOrange;
                 border-bottom: none;
                 &:first-child{
                     border-bottom-left-radius: 0px;
@@ -88,7 +89,7 @@
             border-bottom-right-radius: 9px;
             border: none;
             cursor: pointer;
-            background-color: #fbb03b;
+            background-color: $myOrange;
             flex: 1;
 
             @include sm{

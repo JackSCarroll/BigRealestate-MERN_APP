@@ -1,4 +1,5 @@
 @use "../../responsive.scss" as *;
+@use "../../variables.scss" as *;
 
 nav{
     height: 100px;
@@ -51,20 +52,19 @@ nav{
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        background-color: #e6e4ff;
         height: 100%;
-
-        @include md{
-            background-color: transparent;
-        }
 
         a{
             padding: 12px 24px;
             margin: 20px;
+
+            @include md{
+                margin: 10px;
+            }
         }
 
         .register{
-            background-color: #fbb03b;
+            background-color: $myOrange;
             border-radius: 10px;
         }
 
@@ -79,7 +79,7 @@ nav{
             span{
                 height: 5px;
                 width: 100%;
-                background-color: #fbb03b;
+                background-color: $myOrange;
                 border-radius: 25px;
                 position: absolute;
                 top: 50%;

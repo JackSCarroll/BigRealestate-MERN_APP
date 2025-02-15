@@ -1,4 +1,5 @@
 @use "../../responsive.scss" as *;
+@use "../../variables.scss" as *;
 
 .homePage{
     display: flex;
@@ -57,7 +58,6 @@
     };
     .imageContainer{
         flex: 2;
-        background-color: #e6e4ff;
         position: relative;
         display: flex;
         align-items: center;
@@ -69,7 +69,7 @@
         img{
             width: 115%;
             position: absolute;
-            right: -10px;
+            right: -25px;
 
 
             @include lg{

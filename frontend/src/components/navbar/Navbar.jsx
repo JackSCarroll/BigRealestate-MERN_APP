@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Navbar.scss"
+import { Link } from "react-router-dom";
 
 function Navbar() {
     const [active, setActive] = useState(false);
@@ -10,26 +11,26 @@ function Navbar() {
                     <img src='/logo.png' alt='logo' />
                     <span>BigRealestate</span>
                 </a>
-                <a href='/'>Home</a>
-                <a href='/'>About</a>
-                <a href='/'>Contact</a>
-                <a href='/'>Agents</a>
+                <Link to={'/'}>Home</Link>
+                <Link to={'/'}>About</Link>
+                <Link to={'/'}>Contact</Link>
+                <Link to={'/'}>Agents</Link>
             </div>
             <div className='right'>
-                <a href="/login">Sign In</a>
-                <a href="/register" className="register">Sign Up</a>
+                <Link to={'/register'}>Sign Up</Link>
+                <Link className="register" to={'/login'}>Sign In</Link>
                 <div className={active ? "hamMenu active" : "hamMenu"} onClick={() => setActive(!active)}>
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
                 <div className={active ? "mobileMenu active" : "mobileMenu"}>
-                    <a href='/'>Home</a>
-                    <a href='/'>About</a>
-                    <a href='/'>Contact</a>
-                    <a href='/'>Agents</a>
-                    <a href="/login">Sign In</a>
-                    <a href="/register">Sign Up</a>
+                    <Link to={'/'}>Home</Link>
+                    <Link to={'/'}>About</Link>
+                    <Link to={'/'}>Contact</Link>
+                    <Link to={'/'}>Agents</Link>
+                    <Link to={'/register'}>Sign Up</Link>
+                    <Link className="register" to={'/login'}>Sign In</Link>
                 </div>
             </div>
         </nav>
