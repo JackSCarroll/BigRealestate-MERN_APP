@@ -63,6 +63,55 @@ nav{
             }
         }
 
+        .user{
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+
+            @include md{
+                .userName{
+                    display: none;
+                }
+            }
+
+            @include sm{
+                display: none;
+            }
+
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 2px solid $myOrange;
+                object-fit: cover;
+                margin-right: 10px;
+            }
+
+            .profile{
+                padding: 12px 24px;
+                cursor: pointer;
+                background-color: $myOrange;
+                border-radius: 10px;
+                position: relative;
+
+                .notification{
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    top: -5px;
+                    right: -5px;
+                    background-color: red;
+                    color: white;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    filter: drop-shadow(0 0 2px black);
+                }
+            }
+        }
+
+
         .register{
             background-color: $myOrange;
             border-radius: 10px;

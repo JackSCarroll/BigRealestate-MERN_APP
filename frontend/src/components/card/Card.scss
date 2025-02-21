@@ -1,4 +1,5 @@
 @use "../../variables.scss" as *;
+@use "../../responsive.scss" as *;
 
 .card{
     display: flex;
@@ -7,6 +8,10 @@
     .imageContainer {
         flex: 2;
         height: 200px;
+
+        @include sm{
+            display: none;
+        }
 
         img{
             width: 100%;

@@ -1,0 +1,118 @@
+@use './../../variables.scss' as *;
+
+.chat{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .messages{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: scroll;
+
+        h1{
+            font-weight: 300;
+        }
+
+        .message{
+            background-color: $myOrangeTransparent;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+
+            span{
+                font-weight: bold;
+            }
+        }
+    }
+
+    .chatBox{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid $myOrange;
+        border-top: none;
+        border-radius: 10px 10px 0px 0px;
+        background-color: white;
+        box-shadow: 1px -9px 35px 0px rgba(0,0,0,0.75);
+
+        .top{
+            background-color: $myOrange;
+            border-radius: 10px 10px 0px 0px;
+            padding: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .user{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+            }
+            .close{
+                cursor: pointer;
+            }
+        }
+
+        .center{
+            height: 350px;
+            overflow: scroll;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+
+            .chatMessage{
+                width: 50%;
+
+                &.own{
+                    align-self: flex-end;
+                    text-align: right;
+                }
+
+                span{
+                    font-size: 12px;
+                    background-color: $myOrangeTransparent;
+                    padding: 2px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        .bottom{
+            border-top: 2px solid $myOrange;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            textarea{
+                flex: 3;
+                height:100%;
+                border: none;
+                padding: 20px;
+            }
+
+            button{
+                flex: 1;
+                background-color: $myOrange;
+                height: 100%;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
