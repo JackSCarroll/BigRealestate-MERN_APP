@@ -18,6 +18,7 @@
         flex-direction: column;
         gap: 20px;
         overflow-y: scroll;
+        padding-bottom: 20px;
 
         h1{
             font-weight: 300;
@@ -77,10 +78,21 @@
 
             .chatMessage{
                 width: 50%;
+                p{
+                    padding: 5px 10px;
+                    background-color: $myOrangeTransparent;
+                    border-radius: 10px;
+                }
 
                 &.own{
                     align-self: flex-end;
                     text-align: right;
+                    p{
+                        background-color: $myDarkBlueTransparent;
+                    }
+                    span{
+                        background-color: $myDarkBlueTransparent;
+                    }
                 }
 
                 span{
