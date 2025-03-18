@@ -37,6 +37,7 @@
                 button{
                     padding: 12px 24px;
                     background-color: $myOrange;
+                    color: white;
                     cursor: pointer;
                     border: none;
                     border-radius: 10px;
@@ -52,6 +53,16 @@
                     display: flex;
                     align-items: center;
                     gap: 20px;
+                }
+
+                button{
+                    width: 100px;
+                    background-color: $myOrange;
+                    border: none;
+                    color: white;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    border-radius: 10px;
                 }
 
                 img{

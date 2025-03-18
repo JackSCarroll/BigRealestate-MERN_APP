@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Navbar.scss"
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function Navbar() {
     const [active, setActive] = useState(false);
-    const user = true;
+    const { currentUser } = useContext(AuthContext);
     return (
         <nav>
             <div className='left'>
@@ -19,9 +20,9 @@ function Navbar() {
             </div>
             <div className='right'>
                 {/*Check if user is logged in and show profile, otherwise show sign in/ sign up*/}
-                {user ? (<div className='user'>
-                    <img src='https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/7/22/1437566053687/16df9aa9-5eb1-4ab0-87d5-b4ff14517f53-1020x612.jpeg?width=1900&dpr=1&s=none&crop=none' alt='' />
-                    <span className='userName'>Brian Limmond</span>
+                {currentUser ? (<div className='user'>
+                    <img src={currentUser.avatar || "/noavatar.jpg"} alt='' />
+                    <span className='userName'>{currentUser.username}</span>
                     <Link className='profile' to={'/profile'}>
                         <div className="notification">3</div>
                         <span>Profile</span>

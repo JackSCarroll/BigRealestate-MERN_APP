@@ -1,0 +1,31 @@
+@use "../../variables.scss" as *;
+
+.fileUploader{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+    button{
+        padding: 20px;
+        border-radius: 5px;
+        width: 100%;
+        border: none;
+        background-color: $myOrange;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:disabled{
+            background-color: #bed9d8;
+            cursor: not-allowed;
+        }
+    }
+
+    .fileInfo{
+        margin-bottom: 4px;
+        font-size: 14px;
+        color: gray;
+    }
+}
