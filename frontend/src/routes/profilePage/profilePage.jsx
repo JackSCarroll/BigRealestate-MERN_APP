@@ -41,7 +41,9 @@ function ProfilePage(){
                     </div>
                     <div className="title">
                         <h1>My Listings</h1>
-                        <button>Create Listing</button>
+                        <Link to="/add">
+                            <button>Create Listing</button>
+                        </Link>
                     </div>
                     <List/>
                     <div className="title">

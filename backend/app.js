@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
 import uploadRoute from "./routes/upload.route.js";
+import postRoute from "./routes/post.route.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -30,6 +31,7 @@ app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/upload", uploadRoute);
+app.use("/api/posts", postRoute);
 
 app.listen(8800, ()=>{
     console.log("Server is running!")
