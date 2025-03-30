@@ -3,16 +3,22 @@ import './fileUploader.scss';
 import apiRequest from '../../lib/apiRequest';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function FileUploader({setAvatar, userId}) {
+export default function FileUploader({setState, userId, config}) {
     const [file, setFile] = useState(null);
     const [status, setStatus] = useState('idle');
     const [error, setError] = useState("");
     const { currentUser, updateUser } = useContext(AuthContext);
+    const { multiple, uploadUrl, uploadField } = config;
 
     function handleFileChange(e) {
         if(e.target.files) {
-            // Single file input
-            setFile(e.target.files[0]);
+            if (multiple) {
+                // Multiple file input
+                setFile(Array.from(e.target.files));
+            } else {
+                // Single file input
+                setFile(e.target.files[0]);
+            }
         }
     }
 
@@ -21,18 +27,27 @@ export default function FileUploader({setAvatar, userId}) {
 
         setStatus('uploading');
         const formData = new FormData();
-        formData.append('avatar', file);
+        if (multiple) {
+            for (let i = 0; i < file.length; i++) {
+                formData.append(uploadField, file[i]);
+            }
+        } else {
+            formData.append(uploadField, file);
+        }
 
         try {
             setStatus('uploading');
-            const res = await apiRequest.post(`/upload/uploadSingle/${userId}`, formData);
+            const res = await apiRequest.post(uploadUrl, formData);
             console.log(res);
             setStatus('idle');
-            setAvatar(res.data.file);
-
-            // Update user's avatar field in database
-            const res2 = await apiRequest.put(`/users/${userId}`, {avatar: res.data.file});
-            updateUser(res2.data);
+            if(multiple) {
+                setState(prev=>[...prev, ...res.data.files]);
+            } else {
+                setState(prev=>[...prev, res.data.file]);
+                // Update user's avatar field in database
+                const res2 = await apiRequest.put(`/users/${userId}`, {avatar: res.data.file});
+                updateUser(res2.data);
+            }
             setFile(null);
             setError(res.data.message);
         } catch(e) {
@@ -46,7 +61,7 @@ export default function FileUploader({setAvatar, userId}) {
     <div className="fileUploader">
         <label>Upload a file</label>
         <br/>
-        <input type="file" onChange={handleFileChange}/>
+        <input type="file" onChange={handleFileChange} multiple={multiple} />
         {file && (
             <div className="fileInfo">
                 <p>Filename: {file.name}</p>

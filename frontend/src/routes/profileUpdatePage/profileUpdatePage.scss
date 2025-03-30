@@ -38,6 +38,10 @@
                 font-weight: bold;
                 cursor: pointer;
 
+                &:hover{
+                    background-color: $myOrangeHighlight;
+                }
+
                 &:disabled{
                     background-color: #bed9d8;
                     cursor: not-allowed;

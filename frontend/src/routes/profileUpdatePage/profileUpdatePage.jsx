@@ -8,7 +8,7 @@ import './profileUpdatePage.scss';
 function ProfileUpdatePage(){
   const [error, setError] = useState("");
   const { currentUser, updateUser } = useContext(AuthContext);
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -62,10 +62,15 @@ function ProfileUpdatePage(){
               </form>
           </div>
           <div className="sideContainer">
-            <img src={ avatar || "/noavatar.jpg"} alt="" className='avatar'/>
+            <img src={ avatar[0] || currentUser.avatar || "/noavatar.jpg"} alt="" className='avatar'/>
             <FileUploader 
-              setAvatar={setAvatar}
               userId={currentUser.id}
+              config={{
+                multiple: false,
+                uploadUrl: `/upload/uploadSingle/${currentUser.id}`,
+                uploadField: 'avatar',
+              }}
+              setState={setAvatar}
             />
           </div>
       </div>

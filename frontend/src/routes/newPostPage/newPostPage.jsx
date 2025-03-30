@@ -1,14 +1,19 @@
 import "./newPostPage.scss";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import FileUploader from "../../components/fileUploader/fileUploader";
 import apiRequest from "../../lib/apiRequest";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function NewPostPage() {
     const [value, setValue] = useState("");
     const [images, setImages] = useState([]);
     const [error, setError] = useState("");
+    const { currentUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,6 +46,7 @@ function NewPostPage() {
                     restaurant: parseInt(inputs.restaurant),
                 }
             })
+            navigate(`/${res.data.id}`);
         } catch(err) {
             console.log(err);
             setError(error);
@@ -74,11 +80,11 @@ function NewPostPage() {
                         </div>
                         <div className="item">
                             <label htmlFor="bedroom">Bedroom Number</label>
-                            <input min={1} id="bedroom" name="bedroom" type="number" />
+                            <input min={0} id="bedroom" name="bedroom" type="number" />
                         </div>
                         <div className="item">
                             <label htmlFor="bathroom">Bathroom Number</label>
-                            <input min={1} id="bathroom" name="bathroom" type="number" />
+                            <input min={0} id="bathroom" name="bathroom" type="number" />
                         </div>
                         <div className="item">
                             <label htmlFor="latitude">Latitude</label>
@@ -156,7 +162,15 @@ function NewPostPage() {
                 {images.map((image,index)=>(
                     <img src={image} alt="" key={index}/>
                 ))}
-                <FileUploader setState={setImages}/>
+                <FileUploader 
+                    userId={currentUser.id}
+                    config={{
+                        multiple: true,
+                        uploadUrl: `/upload/uploadMultiple/${currentUser.id}`,
+                        uploadField: 'postImages',
+                    }}
+                    setState={setImages}
+                />
             </div>
         </div>
     );

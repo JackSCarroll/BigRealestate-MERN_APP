@@ -1,3 +1,5 @@
+@use "../../variables.scss" as *;
+
 .newPostPage {
     height: 100%;
     display: flex;
@@ -5,6 +7,7 @@
     .formContainer {
       flex: 3;
       overflow: scroll;
+      padding: 5px;
   
       .wrapper {
         margin: 30px 50px 100px 0px;
@@ -48,10 +51,13 @@
             width: 30%;
             border-radius: 5px;
             border: none;
-            background-color: teal;
+            background-color: $myOrange;
             color: white;
             font-weight: bold;
             cursor: pointer;
+            &:hover {
+              background-color: $myOrangeHighlight;
+            }
           }
         }
       }
@@ -59,12 +65,14 @@
   
     .sideContainer {
       flex: 2;
-      background-color: #fcf5f3;
       display: flex;
       flex-direction: column;
       gap: 20px;
       align-items: center;
+      overflow-y: scroll;
       justify-content: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
   
       img {
         width: 50%;

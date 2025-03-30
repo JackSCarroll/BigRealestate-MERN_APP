@@ -21,6 +21,9 @@
             background-color: #bed9d8;
             cursor: not-allowed;
         }
+        &:hover{
+            background-color: $myOrangeHighlight;
+        }
     }
 
     .fileInfo{

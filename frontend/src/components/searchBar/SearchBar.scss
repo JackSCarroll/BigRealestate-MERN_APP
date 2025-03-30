@@ -92,6 +92,10 @@
             background-color: $myOrange;
             flex: 1;
 
+            &:hover{
+                background-color: $myOrangeHighlight;
+            }
+
             @include sm{
                 padding: 10px;
                 border-top-right-radius: 0px;
