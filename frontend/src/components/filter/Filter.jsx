@@ -6,8 +6,8 @@ function Filter() {
             <h1>Search results for <b>Melbourne</b></h1>
             <div className="top">
                 <div className="item">
-                    <label htmlFor="suburb">Location</label>
-                    <input type="text" id="suburb" name="suburb" placeholder="Suburb Location"/>
+                    <label htmlFor="city">Location</label>
+                    <input type="text" id="city" name="city" placeholder="City"/>
                 </div>
             </div>
             <div className="bottom">

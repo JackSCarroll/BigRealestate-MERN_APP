@@ -2,12 +2,13 @@ import "./profilePage.scss";
 import List from '../../components/list/List'
 import Chat from '../../components/chat/Chat'
 import apiRequest from "../../lib/apiRequest";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage(){
 
+    const data = useLoaderData();
     const { updateUser, currentUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -45,11 +46,11 @@ function ProfilePage(){
                             <button>Create Listing</button>
                         </Link>
                     </div>
-                    <List/>
+                    {/* <List posts = {data.postResponse.data}/> */}
                     <div className="title">
                         <h1>Saved Properties</h1>
                     </div>
-                    <List/>
+                    {/* <List/> */}
                 </div>
             </div>
             <div className="chatContainer">

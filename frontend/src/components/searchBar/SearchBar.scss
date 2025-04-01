@@ -83,28 +83,37 @@
                 }
             }
         }
-
-        button{
+        a{
+            flex: 1;
+            background-color: $myOrange;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-top-right-radius: 9px;
             border-bottom-right-radius: 9px;
             border: none;
             cursor: pointer;
-            background-color: $myOrange;
-            flex: 1;
 
             &:hover{
                 background-color: $myOrangeHighlight;
             }
 
-            @include sm{
-                padding: 10px;
-                border-top-right-radius: 0px;
-                border-bottom-left-radius: 9px;
-            }
-
-            img{
-                width: 24px;
-                height: 24px;
+            button{
+                flex: 1;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+    
+                @include sm{
+                    padding: 10px;
+                    border-top-right-radius: 0px;
+                    border-bottom-left-radius: 9px;
+                }
+    
+                img{
+                    width: 24px;
+                    height: 24px;
+                }
             }
         }
     }
