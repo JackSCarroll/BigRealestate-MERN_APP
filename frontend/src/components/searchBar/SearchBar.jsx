@@ -8,8 +8,8 @@ function SearchBar() {
     const [query, setQuery] = useState({
         type: 'buy',
         city: '',
-        minPrice: 0,
-        maxPrice: 0,
+        minPrice: '',
+        maxPrice: '',
     });
 
     const switchType = (val) => {

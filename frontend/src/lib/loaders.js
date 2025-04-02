@@ -6,8 +6,8 @@ export const singlePageLoader = async ({request, params}) => {
 }
 export const listPageLoader = async ({request, params}) => {
     const query = request.url.split("?")[1];
-    const res = await apiRequest("/posts?" + query);
-    return res.data;
+    const postPromise = apiRequest("/posts?" + query);
+    return { postResponse: postPromise };
 }
 export const profilePageLoader = async () => {
     const res = await apiRequest("/users/profilePosts");

@@ -1,13 +1,31 @@
 import './singlePage.scss';
 import Slider from '../../components/slider/Slider';
 import Map from '../../components/map/Map';
-import { singlePostData, userData } from '../../lib/dummydata';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import apiRequest from '../../lib/apiRequest';
 
 function SinglePage() {
     const  post = useLoaderData();
-    console.log(post);
+    const [saved, setSaved] = useState(post.isSaved);
+    const {currentUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleSave = async () => {
+        if (!currentUser) {
+          navigate("/login");
+        }
+        setSaved((prev) => !prev);
+        try {
+            const id = post.id;
+          await apiRequest.post("/users/save", { postId: id });
+        } catch (err) {
+          console.log(err);
+          setSaved((prev) => !prev);
+        }
+      };
     return (
         <div className='singlePage'>
             <div className="details">
@@ -124,9 +142,12 @@ function SinglePage() {
                             <img src='/chat.png' alt='' />
                             <span>Send an enquiry</span>
                         </button>
-                        <button>
+                        <button onClick={handleSave} style={{
+                            backgroundColor: saved ? "#fbb03b" : "white",
+                            color: saved ? "black" : "#fbb03b",
+                            }}>
                             <img src='/save.png' alt='' />
-                            <span>Save property</span>
+                            {saved ? "Propery Saved" : "Save property" }
                         </button>
                     </div>
                 </div>
