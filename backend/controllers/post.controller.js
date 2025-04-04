@@ -16,9 +16,27 @@ export const getPosts = async (req, res) => {
                 bedroom: parseInt(query.bedroom) || undefined,
         }
         });
-        setTimeout(() => {
-        }, 1000);
-        res.status(200).json(posts)
+        const token = req.cookies?.token;
+        if(token){
+            jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decoded) => {
+                if(!err) {
+                    const savedPosts = await prisma.savedPost.findMany({
+                        where: { userId: decoded.id },
+                        select: { postId: true },
+                    });
+                    const savedPostIds = savedPosts.map((post) => post.postId);
+                    const postsWithSavedStatus = posts.map((post) => ({
+                        ...post, isSaved: savedPostIds.includes(post.id)
+                    }));
+                    res.status(200).json(postsWithSavedStatus);
+                } else {
+                    const postsWithSavedStatus = posts.map((post) => ({
+                        ...post, isSaved: false
+                    }));
+                    res.status(200).json(postsWithSavedStatus);
+                }
+            });
+        }
     } catch(err) {
         console.log(err);
         res.status(500).json({message: "Failed to get posts"});

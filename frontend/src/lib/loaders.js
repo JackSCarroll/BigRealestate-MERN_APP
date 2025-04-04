@@ -10,6 +10,7 @@ export const listPageLoader = async ({request, params}) => {
     return { postResponse: postPromise };
 }
 export const profilePageLoader = async () => {
-    const res = await apiRequest("/users/profilePosts");
-    return res.data;
+    const postPromise = apiRequest("/users/profilePosts");
+    console.log(postPromise);
+    return { postResponse: postPromise };
 }

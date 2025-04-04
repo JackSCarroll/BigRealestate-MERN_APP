@@ -161,12 +161,15 @@
 
             .buttons{
                 display: flex;
+                flex-direction: row;
                 justify-content: space-between;
+                align-items: center;
 
                 button{
+                    display: flex;
                     padding: 20px;
                     align-items: center;
-                    gap: 10px;
+                    gap: 5px;
                     background-color: white;
                     border: 1px solid $myOrange;
                     border-radius: 10px;
@@ -181,6 +184,8 @@
                     img{
                         width: 16px;
                         height: 16px;
+                        object-fit: cover;
+
                     }
                 }
             }

@@ -1,7 +1,31 @@
+import { useContext, useState, useTransition } from 'react';
 import './Card.scss';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useOptimistic } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import apiRequest from '../../lib/apiRequest';
 
-function Card({item}) {
+function Card({item, isSaved}) {
+    const [saved, setSaved] = useState(isSaved);
+    const [optimisticSaved, setOptimisticSaved] = useOptimistic(saved);
+    const [isPending, startTransition] = useTransition();
+    const {currentUser} = useContext(AuthContext);
+
+    const handleSave = async () => {
+        if (!currentUser) {
+            Navigate("/login");
+        }
+        startTransition(() => {
+            setOptimisticSaved((prev) => !prev);
+        });
+        try {
+            const id = item.id;
+            await apiRequest.post("/users/save", { postId: id });
+            setSaved((prev) => !prev);
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className='card'>
             <Link className='imageContainer' to={`/${item.id}`}>
@@ -31,8 +55,10 @@ function Card({item}) {
                         <div className="icon">
                             <img src="/chat.png" alt="" />
                         </div>
-                        <div className="icon">
-                            <img src="/save.png" alt="" />
+                        <div className="icon" disabled={isPending} onClick={handleSave} style={{
+                            background: saved? "#fbb03b" : "transparent",
+                        }}>
+                            <img src="/save.png" alt=""/>
                         </div>
                     </div>
                 </div>

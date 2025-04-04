@@ -3,13 +3,16 @@ import Slider from '../../components/slider/Slider';
 import Map from '../../components/map/Map';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
-import { useContext, useState } from 'react';
+import { useContext, useState, useOptimistic, useTransition } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import apiRequest from '../../lib/apiRequest';
 
 function SinglePage() {
     const  post = useLoaderData();
+    console.log(post);
     const [saved, setSaved] = useState(post.isSaved);
+    const [optimisticSaved, setOptimisticSaved] = useOptimistic(saved);
+    const [isPending, startTransition] = useTransition();
     const {currentUser} = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -17,13 +20,15 @@ function SinglePage() {
         if (!currentUser) {
           navigate("/login");
         }
-        setSaved((prev) => !prev);
+        startTransition(() => {
+            setOptimisticSaved((prev) => !prev);
+        });
         try {
             const id = post.id;
-          await apiRequest.post("/users/save", { postId: id });
+            await apiRequest.post("/users/save", { postId: id });
+            setSaved((prev) => !prev);
         } catch (err) {
           console.log(err);
-          setSaved((prev) => !prev);
         }
       };
     return (
@@ -142,7 +147,7 @@ function SinglePage() {
                             <img src='/chat.png' alt='' />
                             <span>Send an enquiry</span>
                         </button>
-                        <button onClick={handleSave} style={{
+                        <button onClick={handleSave} disabled={isPending} style={{
                             backgroundColor: saved ? "#fbb03b" : "white",
                             color: saved ? "black" : "#fbb03b",
                             }}>
