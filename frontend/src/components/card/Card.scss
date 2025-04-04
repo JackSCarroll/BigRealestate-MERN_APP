@@ -27,6 +27,7 @@
         flex-direction: column;
         justify-content: space-between;
         gap: 10px;
+        color: black;
 
         img{
             width: 16px;
@@ -94,11 +95,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-
-                    &:hover{
-                        background-color: $myOrange;
-                        color: white;
-                    }
+                    background-color: white;
                 }
             }
         }

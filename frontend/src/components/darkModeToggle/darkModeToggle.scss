@@ -1,0 +1,27 @@
+@use "../../variables.scss" as *;
+@use "../../responsive.scss" as *;
+
+.darkMode {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    cursor: pointer;
+
+    .lightModeIcon svg{
+        path {
+            stroke: $myOrange;
+        }
+    }
+    .darkModeIcon svg{
+        circle{
+            stroke: $myDarkBlue;
+        }
+        path {
+            stroke: $myDarkBlue;
+        }
+    }
+
+    @include sm{
+        display: none;
+    }
+}

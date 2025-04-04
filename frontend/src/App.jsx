@@ -13,7 +13,7 @@ import { singlePageLoader, listPageLoader, profilePageLoader } from "./lib/loade
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Layout/>,
     children: [
       {
         path: "/",

@@ -1,3 +1,4 @@
+@use 'variables.scss' as *;
 *{
     padding: 0;
     margin: 0;
@@ -12,4 +13,17 @@ a {
 body {
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
+    background-color: var(--myBackground);
+    color: var(--myText);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+:root[data-theme="light"] {
+    --myBackground: #f5f5f5;
+    --myText: #141429;
+}
+
+:root {
+    --myBackground: #1a1a1d;
+    --myText: #f5f5f5;
 }
