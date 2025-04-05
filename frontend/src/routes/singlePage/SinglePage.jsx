@@ -147,10 +147,7 @@ function SinglePage() {
                             <img src='/chat.png' alt='' />
                             <span>Send an enquiry</span>
                         </button>
-                        <button onClick={handleSave} disabled={isPending} style={{
-                            backgroundColor: saved ? "#fbb03b" : "white",
-                            color: saved ? "black" : "#fbb03b",
-                            }}>
+                        <button onClick={handleSave} disabled={isPending} className={`saveButton ${optimisticSaved ? "saved" : ""}`}>
                             <img src='/save.png' alt='' />
                             {saved ? "Propery Saved" : "Save property" }
                         </button>

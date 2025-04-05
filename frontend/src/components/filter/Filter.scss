@@ -24,7 +24,9 @@
             width: 100px;
             padding: 10px;
             border: 1px solid $myOrange;
-            background-color: white;
+            background-color: var(--mySecondary);
+            color: var(--myText);
+            transition: all 0.4s ease;
             border-radius: 5px;
             font-size: 14px;
         }

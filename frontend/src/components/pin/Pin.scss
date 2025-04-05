@@ -1,6 +1,18 @@
+@use "../../variables.scss" as *;
+
+.leaflet-popup-content-wrapper{
+    background: var(--mySecondary);
+    color: var(--myText);
+}
+
+.leaflet-popup-tip{
+    background: var(--mySecondary);
+}
+
 .popupContainer{
     display: flex;
     gap: 20px;
+    background-color: var(--mySecondary);
 
     img{
         width: 64px;
@@ -13,5 +25,13 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        a{
+            color: $myOrange;
+        }
     }
+}
+
+.leaflet-container .leaflet-marker-pane img {
+    filter: hue-rotate(180deg);
 }

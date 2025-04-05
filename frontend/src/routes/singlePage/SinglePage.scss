@@ -92,6 +92,7 @@
         height: 100%;
         overflow: scroll;
         padding-bottom: 20px;
+        background-color: var(--mySecondary);
 
         @include md{
             flex: none;
@@ -113,6 +114,10 @@
                 width: 24px;
                 height: 24px;
                 object-fit: cover;
+            }
+            .feature img{
+                filter: invert(var(--myInvert));
+                transition: all 0.4s ease;
             }
 
             .title{
@@ -168,12 +173,15 @@
                 button{
                     display: flex;
                     padding: 20px;
+                    height: 68px;
                     align-items: center;
                     gap: 5px;
-                    background-color: white;
+                    background-color: var(--mySecondary);
+                    color: var(--myText);
                     border: 1px solid $myOrange;
                     border-radius: 10px;
                     cursor: pointer;
+                    transition: all 0.4s ease;
 
                     span{
                         font-weight: bold;
@@ -185,7 +193,24 @@
                         width: 16px;
                         height: 16px;
                         object-fit: cover;
+                        filter: invert(var(--myInvert));
+                        transition: all 0.4s ease;
+                    }
+                }
 
+                .saveButton {
+                    background-color: var(--mySecondary);
+                    color: $myOrange;
+                    font-weight: bold;
+                    img {
+                        filter: invert(var(--myInvert));
+                    }
+                }
+                .saveButton.saved {
+                    background-color: $myOrange;
+                    color: black;
+                    img {
+                        filter: invert(0);
                     }
                 }
             }

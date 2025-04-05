@@ -56,7 +56,7 @@ function Card({item, isSaved}) {
                             <img src="/chat.png" alt="" />
                         </div>
                         <div className="icon" disabled={isPending} onClick={handleSave} style={{
-                            background: saved? "#fbb03b" : "white",
+                            background: saved? "#fbb03b" : "transparent",
                         }}>
                             <img src="/save.png" alt=""/>
                         </div>

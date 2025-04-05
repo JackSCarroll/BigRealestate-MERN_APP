@@ -4,6 +4,9 @@
 .card{
     display: flex;
     gap: 20px;
+    background-color: var(--mySecondary);
+    padding: 20px;
+    border-radius: 10px;
 
     .imageContainer {
         flex: 2;
@@ -32,12 +35,14 @@
         img{
             width: 16px;
             height: 16px;
+            filter: invert(var(--myInvert));
+            transition: all 0.4s ease;
         }
 
         .title{
             font-size: 20px;
             font-weight: 600;
-            color: #444;
+            color: var(--myText);
             transition: all 0.4s ease;
 
             &:hover{
@@ -59,7 +64,7 @@
             font-weight: 300;
             padding: 5px;
             border-radius: 5px;
-            background-color: $myOrangeTransparent;
+            background-color: $myOrange;
             width: max-content;
         }
 
@@ -77,9 +82,11 @@
                     display: flex;
                     gap: 5px;
                     align-items: center;
-                    background-color: whitesmoke;
+                    background-color: var(--myBackground);
                     padding: 5px;
                     border-radius: 5px;
+                    color: var(--myText);
+                    transition: all 0.4s ease;
                 }
             }
 
@@ -95,7 +102,8 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background-color: white;
+                    background-color: var(--myBackground);
+                    transition: all 0.4s ease;
                 }
             }
         }

@@ -8,7 +8,9 @@
             border: 1px solid $myOrange;
             border-bottom: none;
             cursor: pointer;
-            background-color: white;
+            background-color: var(--mySecondary);
+            color: var(--myText);
+            transition: all 0.4s ease;
             text-transform: capitalize;
 
             &.active{
@@ -36,7 +38,8 @@
         justify-content: space-between;
         height: 64px;
         gap: 5px;
-        background-color: whitesmoke;
+        background-color: var(--mybackground);
+        transition: all 0.4s ease;
 
         @include sm{
             flex-direction: column;
@@ -50,6 +53,9 @@
             width: 200px;
             font-size: 16px;
             font-weight: 500;
+            background-color: var(--mySecondary);
+            color: var(--myText);
+            transition: all 0.4s ease;
             
 
             &:first-child{
