@@ -51,9 +51,8 @@ function SinglePage() {
                                 <span>{post.user.username}</span>
                             </div>
                         </div>
-                        <div 
-                            className="bottom" 
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.postDetail.desc)}}>
+                        <div className="bottom">
+                            <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.postDetail.desc)}}></p>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @use './../../variables.scss' as *;
-
+@use './../../index.scss' as *;
 .chat{
     height: 100%;
     display: flex;
@@ -47,7 +47,7 @@
         border: 1px solid $myOrange;
         border-top: none;
         border-radius: 10px 10px 0px 0px;
-        background-color: white;
+        background-color: --myBackground;
         box-shadow: 1px -9px 35px 0px rgba(0,0,0,0.75);
 
         .top{
@@ -80,7 +80,7 @@
                 width: 50%;
                 p{
                     padding: 5px 10px;
-                    background-color: $myOrangeTransparent;
+                    background-color: var(--mySecondary);
                     border-radius: 10px;
                 }
 
@@ -88,16 +88,12 @@
                     align-self: flex-end;
                     text-align: right;
                     p{
-                        background-color: $myDarkBlueTransparent;
-                    }
-                    span{
-                        background-color: $myDarkBlueTransparent;
+                        background-color: $myOrange;
                     }
                 }
 
                 span{
                     font-size: 12px;
-                    background-color: $myOrangeTransparent;
                     padding: 2px;
                     border-radius: 5px;
                 }
@@ -116,6 +112,8 @@
                 height:100%;
                 border: none;
                 padding: 20px;
+                background-color: var(--mySecondary);
+                color: var(--myText);
             }
 
             button{
