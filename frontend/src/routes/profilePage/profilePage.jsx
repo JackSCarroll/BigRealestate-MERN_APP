@@ -40,20 +40,21 @@ function ProfilePage(){
                         <span>Email: <b>{currentUser.email}</b></span>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
-                    <div className="title">
-                        <h1>My Listings</h1>
-                        <Link to="/add">
-                            <button>Create Listing</button>
-                        </Link>
-                    </div>
-                    <Suspense fallback={<p>Loading...</p>}>
-                        <Await 
-                            resolve={data.postResponse}
-                            errorElement={<p>Error loading posts</p>}
-                        >
-                            {(postResponse) => <List posts = {postResponse.data.userPosts}/>}
-                        </Await>
-                    </Suspense>
+                    {currentUser.role === "agent" && (
+                    <><div className="title">
+                            <h1>My Listings</h1>
+                            <Link to="/add">
+                                <button>Create Listing</button>
+                            </Link>
+                        </div><Suspense fallback={<p>Loading...</p>}>
+                                <Await
+                                    resolve={data.postResponse}
+                                    errorElement={<p>Error loading posts</p>}
+                                >
+                                    {(postResponse) => <List posts={postResponse.data.userPosts} />}
+                                </Await>
+                            </Suspense></>
+                    )}
                     <div className="title">
                         <h1>Saved Properties</h1>
                     </div>

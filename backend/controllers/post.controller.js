@@ -36,6 +36,11 @@ export const getPosts = async (req, res) => {
                     res.status(200).json(postsWithSavedStatus);
                 }
             });
+        } else {
+            const postsWithSavedStatus = posts.map((post) => ({
+                ...post, isSaved: false
+            }));
+            res.status(200).json(postsWithSavedStatus);
         }
     } catch(err) {
         console.log(err);
@@ -49,10 +54,14 @@ export const getPost = async (req, res) => {
             where: { id },
             include: {
                 postDetail: true,
-                user: {
+                agent: {
                     select: {
-                        username: true,
-                        avatar: true
+                        user: {
+                            select: {
+                                username: true,
+                                avatar: true,
+                            }
+                        },
                     }
                 }
             }

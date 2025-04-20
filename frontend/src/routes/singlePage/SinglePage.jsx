@@ -47,8 +47,8 @@ function SinglePage() {
                                 <div className="price">$ {post.price} </div>
                             </div>
                             <div className="user">
-                                <img src={post.user.avatar} alt='' />
-                                <span>{post.user.username}</span>
+                                <img src={post.agent.user.avatar} alt='' />
+                                <span>{post.agent.user.username}</span>
                             </div>
                         </div>
                         <div className="bottom">

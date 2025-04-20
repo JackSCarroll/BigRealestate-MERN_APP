@@ -169,30 +169,46 @@ export const deleteUser = async (req, res) => {
 export const profilePosts = async (req, res) => {
     const tokenUserId = req.userId;
     try {
-        const userPosts = await prisma.post.findMany({
+        // Check if the user is an agent
+        const agent = await prisma.agent.findUnique({
             where: { userId: tokenUserId },
-            include: {
-                savedPosts: {
-                    where: { userId: tokenUserId },
-                    select: { id: true },
-                },
-            },
+            select: { id: true,
+                userId: true,
+             }
         });
+        // Get all saved posts by the user
         const saved = await prisma.savedPost.findMany({
             where: { userId: tokenUserId },
             include: {
                 post: true,
             },
         });
-        const userPostsWithSavedStatus = userPosts.map(post => ({
-            ...post,
-            isSaved: post.savedPosts.length > 0,
-        }));
+        // Map the saved posts to include the isSaved property
         const savedPostsWithSavedStatus = saved.map(savedPost => ({
             ...savedPost.post,
             isSaved: true,
         }));
-        res.status(200).json({userPosts: userPostsWithSavedStatus, savedPosts: savedPostsWithSavedStatus});
+        if (agent) {
+            // Get all posts created by the agent
+            const userPosts = await prisma.post.findMany({
+                where: { agentId: agent.id },
+                include: {
+                    savedPosts: {
+                        where: { userId: agent.userId },
+                        select: { id: true },
+                    },
+                },
+            });
+            // Map the users posts to include the isSaved property
+            const userPostsWithSavedStatus = userPosts.map(post => ({
+                ...post,
+                isSaved: post.savedPosts.length > 0,
+            }));
+            res.status(200).json({userPosts: userPostsWithSavedStatus, savedPosts: savedPostsWithSavedStatus});
+        } else {
+            // If the user is not an agent, return an empty array for userPosts
+            res.status(200).json({userPosts: [], savedPosts: savedPostsWithSavedStatus});
+        }
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Failed to get profile posts!" });
