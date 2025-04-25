@@ -149,6 +149,37 @@ export const makeUserAgent = async (req, res) => {
         res.status(500).json({ message: "Failed to update user" });
     }
 }
+export const updateUserRole = async (req, res) => {
+    const id = req.params.id;
+    const tokenUserRole = req.role;
+    if (tokenUserRole !== "admin") {
+        return res.status(403).json({ message: "You are not authorized to update this user" });
+    }
+    const { role } = req.body;
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id }
+        });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        if (user.role === role) {
+            return res.status(400).json({ message: "User is already an " + role });
+        }
+        const updatedUser = await prisma.user.update({
+            where: { id },
+            data: {
+                role,
+            },
+        });
+        const { password: userPassword, ...userInfo } = updatedUser;
+        res.status(200).json(userInfo);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Failed to update user" });
+    }
+}
+
 export const deleteUser = async (req, res) => {
     const id = req.params.id;
     const tokenUserId = req.userId;

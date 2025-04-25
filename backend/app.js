@@ -6,6 +6,7 @@ import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
 import uploadRoute from "./routes/upload.route.js";
 import postRoute from "./routes/post.route.js";
+import adminRoute from "./routes/admin.route.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -32,6 +33,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/upload", uploadRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/admin", adminRoute);
 
 app.listen(8800, ()=>{
     console.log("Server is running!")

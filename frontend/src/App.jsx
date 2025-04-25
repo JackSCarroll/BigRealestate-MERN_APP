@@ -8,7 +8,9 @@ import LoginPage from "./routes/loginPage/loginPage"
 import Register from "./routes/register/register"
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage"
 import NewPostPage from "./routes/newPostPage/newPostPage"
+import AdminPage from "./routes/adminPage/adminPage"
 import { singlePageLoader, listPageLoader, profilePageLoader } from "./lib/loaders.js"
+import UserList from "./components/userList/userList.jsx"
 
 const router = createBrowserRouter([
   {
@@ -55,7 +57,11 @@ const router = createBrowserRouter([
             element: <NewPostPage/>,
           },
         ],
-      }
+      },
+      {
+        path: "/admin",
+        element: <AdminPage/>,
+      },
     ],
   },
 ])

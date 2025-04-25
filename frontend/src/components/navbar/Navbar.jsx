@@ -14,9 +14,10 @@ function Navbar() {
                     <span>BigRealestate</span>
                 </a>
                 <Link to={'/'}>Home</Link>
-                <Link to={'/'}>About</Link>
-                <Link to={'/'}>Contact</Link>
-                <Link to={'/'}>Agents</Link>
+                <Link to={'/about'}>About</Link>
+                <Link to={'/contact'}>Contact</Link>
+                <Link to={'/agents'}>Agents</Link>
+                { currentUser != null && currentUser.role === "admin" && <Link to={'/admin'}>Admin</Link>}
             </div>
             <div className='right'>
                 {/*Check if user is logged in and show profile, otherwise show sign in/ sign up*/}

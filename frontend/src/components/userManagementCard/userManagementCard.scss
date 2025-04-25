@@ -1,0 +1,105 @@
+@use '../../variables.scss' as *;
+@use '../../responsive.scss' as *;
+@use "sass:color";
+
+.userManagementCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--myBackground);
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    @include md {
+        flex-direction: row;
+    }
+    @include sm {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+.userInfo {
+    display: flex;
+    flex: 4;
+    align-items: center;
+    gap: 10px;
+
+    @include sm {
+        flex-direction: column;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .details {
+        display: flex;
+        flex: 1;
+        gap: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--myText);
+    }
+
+    .names{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .role {
+        flex: 2;
+        font-size: 14px;
+        color: var(--myText);
+
+        input,select{
+            cursor: pointer;
+            width: 100px;
+            padding: 10px;
+            border: 1px solid $myOrange;
+            background-color: var(--mySecondary);
+            color: var(--myText);
+            transition: all 0.4s ease;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+
+    button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: color 0.3s ease;
+
+        &.delete {
+            background-color: red;
+            color: var(--myText);
+            &:hover {
+                background-color: color.adjust(red, $lightness: -10%)
+            }
+        }
+
+        &.update {
+            background-color: $myOrange;
+            color: var(--myText);
+            &:hover {
+                background-color: color.adjust($myOrange, $lightness: -10%)
+            }
+        }
+
+    }
+}
